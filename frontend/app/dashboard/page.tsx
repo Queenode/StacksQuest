@@ -6,6 +6,7 @@ import { FortressButton } from "@/components/fortress-button";
 import { Shield, Zap, Trophy, History, ArrowUpRight, BarChart3, Wallet, GraduationCap } from "lucide-react";
 import { XPProgress } from "@/components/XPProgress";
 import { AchievementGrid } from "@/components/AchievementGrid";
+import { ActivityFeed } from "@/components/ActivityFeed";
 
 const activeQuests = [
   { id: '1', title: 'Proof of Transfer (PoX)', chamber: 3, progress: 65, difficulty: 'Medium' },
@@ -153,26 +154,9 @@ export default function DashboardPage() {
           <div className="space-y-6">
             <h2 className="text-2xl font-bold flex items-center gap-2">
               <History className="w-5 h-5 text-primary" />
-              Recent Activity
+              Live Feed
             </h2>
-            <div className="glass rounded-2xl overflow-hidden divide-y divide-white/5">
-              {activityHistory.map((activity) => (
-                <div key={activity.id} className="p-4 hover:bg-white/[0.02] transition-colors group">
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 p-1.5 rounded bg-primary/10 text-primary">
-                      <ArrowUpRight className="w-3 h-3" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold group-hover:text-primary transition-colors">{activity.title}</h4>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">{activity.time} • {activity.xp ? `+${activity.xp} XP` : activity.value}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <button className="w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 hover:text-primary transition-colors">
-                View Full History
-              </button>
-            </div>
+            <ActivityFeed />
           </div>
         </div>
       </div>
