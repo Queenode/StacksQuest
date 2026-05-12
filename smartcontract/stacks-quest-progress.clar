@@ -121,8 +121,8 @@
       total-score: u0,
       total-xp: u0,
       streak-count: u1,
-      quest-started: block-height,
-      last-active-day: block-height,
+      quest-started: burn-block-height,
+      last-active-day: burn-block-height,
       fortress-master: false
     }))
   )
@@ -139,7 +139,7 @@
                  (+ XP-PER-TOPIC (if (is-eq score u100) XP-PERFECT-SCORE u0))
                  u0))
     ;; Simple streak logic: if active today (simplified for demo as 'new block')
-    (new-streak (if (> block-height (+ (get last-active-day current-progress) u144))
+    (new-streak (if (> burn-block-height (+ (get last-active-day current-progress) u144))
                   (+ (get streak-count current-progress) u1)
                   (get streak-count current-progress)))
   )
@@ -154,7 +154,7 @@
       { user: tx-sender, topic-id: topic-id }
       {
         completed: (or (get completed current-topic) (>= score PASSING-SCORE)),
-        completion-time: (if (>= score PASSING-SCORE) block-height (get completion-time current-topic)),
+        completion-time: (if (>= score PASSING-SCORE) burn-block-height (get completion-time current-topic)),
         quiz-score: (if (> score (get quiz-score current-topic)) score (get quiz-score current-topic)),
         attempts: (+ (get attempts current-topic) u1)
       }
@@ -167,7 +167,7 @@
       total-xp: (+ (get total-xp current-progress) xp-reward),
       streak-count: new-streak,
       quest-started: (get quest-started current-progress),
-      last-active-day: block-height,
+      last-active-day: burn-block-height,
       fortress-master: (is-eq (+ (get topics-completed current-progress) (if is-newly-completed u1 u0)) TOTAL-TOPICS)
     }))
       (map-set user-progress tx-sender updated-progress)
@@ -177,7 +177,7 @@
         rank: u0, ;; Rank calculation usually happens off-chain or via a separate process
         total-topics: (get topics-completed updated-progress),
         average-score: (/ (get total-score updated-progress) (if (is-eq (get topics-completed updated-progress) u0) u1 (get topics-completed updated-progress))),
-        completion-date: block-height
+        completion-date: burn-block-height
       })
       
       (ok { 

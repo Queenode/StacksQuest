@@ -106,7 +106,7 @@
       owner: user,
       achievement-type: ACHIEVEMENT-TOPIC-COMPLETE,
       topic-id: topic-id,
-      earned-at: block-height,
+      earned-at: burn-block-height,
       token-uri: (concat "ipfs://stacks-quest/topic-" (concat (int-to-ascii topic-id) ".json"))
     })
     
@@ -143,7 +143,7 @@
       owner: user,
       achievement-type: ACHIEVEMENT-FORTRESS-MASTER,
       topic-id: u0,
-      earned-at: block-height,
+      earned-at: burn-block-height,
       token-uri: "ipfs://stacks-quest/fortress-master.json"
     })
     
