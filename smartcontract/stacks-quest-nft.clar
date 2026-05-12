@@ -170,10 +170,18 @@
   )
 )
 
-;; Helper function to convert uint to ascii (simplified)
+;; Helper function to convert uint to ascii (handles 1-99)
 (define-private (int-to-ascii (value uint))
   (if (<= value u9)
     (unwrap-panic (element-at "0123456789" value))
-    "0" ;; Simplified for demo
+    (let (
+      (tens (/ value u10))
+      (ones (mod value u10))
+    )
+      (concat 
+        (unwrap-panic (element-at "0123456789" tens))
+        (unwrap-panic (element-at "0123456789" ones))
+      )
+    )
   )
 )
