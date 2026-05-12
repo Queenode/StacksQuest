@@ -11,7 +11,7 @@ const NFT_CONTRACT = {
   name: 'stacks-quest-nft',
 };
 
-const NETWORK_URL = 'https://api.testnet.hiro.so';
+const NETWORK_URL = 'https://api.mainnet.hiro.so';
 
 /**
  * Fetch a user's overall quest progress from the on-chain contract.

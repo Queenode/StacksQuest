@@ -47,7 +47,7 @@ export function StacksAuthProvider({ children }: { children: ReactNode }) {
           icon: '/icon.png',
         },
         onFinish: (data) => {
-          const address = data.userSession.loadUserData().profile.stxAddress.testnet;
+          const address = data.userSession.loadUserData().profile.stxAddress.mainnet;
           setUser({ address, isConnected: true });
           localStorage.setItem('stacks_quest_address', address);
         },
