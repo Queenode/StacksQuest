@@ -1,112 +1,129 @@
+'use client';
+
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { motion } from "framer-motion";
+import { FortressButton } from "@/components/fortress-button";
+import { Trophy, Medal, Star, Shield, ArrowUp } from "lucide-react";
 
 type LeaderboardEntry = {
   rank: number;
   address: string;
-  level: number;
+  chambers: number;
   xp: number;
-  questsCompleted: number;
+  title: string;
 };
 
-// Mock data - in a real app, this would come from an API
-const leaderboardData: LeaderboardEntry[] = [
-  { rank: 1, address: "0x1a2b...3c4d", level: 12, xp: 12850, questsCompleted: 24 },
-  { rank: 2, address: "0x2b3c...4d5e", level: 11, xp: 11500, questsCompleted: 22 },
-  { rank: 3, address: "0x3c4d...5e6f", level: 11, xp: 11050, questsCompleted: 21 },
-  { rank: 4, address: "0x4d5e...6f7a", level: 10, xp: 9800, questsCompleted: 19 },
-  { rank: 5, address: "0x5e6f...7a8b", level: 10, xp: 9200, questsCompleted: 18 },
-  { rank: 6, address: "0x6f7a...8b9c", level: 9, xp: 8450, questsCompleted: 16 },
-  { rank: 7, address: "0x7a8b...9cad", level: 9, xp: 8100, questsCompleted: 15 },
-  { rank: 8, address: "0x8b9c...adbe", level: 8, xp: 7500, questsCompleted: 14 },
-  { rank: 9, address: "0x9cad...becf", level: 8, xp: 7200, questsCompleted: 13 },
-  { rank: 10, address: "0xadbe...cfd0", level: 7, xp: 6800, questsCompleted: 12 },
+const topSeekers: LeaderboardEntry[] = [
+  { rank: 1, address: "SP3...QRTX", chambers: 15, xp: 12850, title: "Fortress Master" },
+  { rank: 2, address: "SP2...MKLP", chambers: 14, xp: 11500, title: "Chamber Lord" },
+  { rank: 3, address: "SP1...JKOW", chambers: 13, xp: 11050, title: "High Seeker" },
+  { rank: 4, address: "SP5...PLM9", chambers: 12, xp: 9800, title: "Scholar" },
+  { rank: 5, address: "SP4...BVC2", chambers: 10, xp: 9200, title: "Acolyte" },
+  { rank: 6, address: "SP8...NMH1", chambers: 9, xp: 8450, title: "Initiate" },
+  { rank: 7, address: "SP9...XZA4", chambers: 8, xp: 8100, title: "Initiate" },
+  { rank: 8, address: "SP7...KJL6", chambers: 6, xp: 7500, title: "Initiate" },
 ];
 
 export default function LeaderboardPage() {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#1a1a1a] via-[#242424] to-[#1a1a1a] py-12 px-4 sm:px-6 lg:px-8">
-      {/* Stone texture overlay */}
-      <div className="absolute inset-0 stone-texture opacity-40" />
+    <div className="min-h-screen relative pb-20 bg-background pt-24">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[100px]" />
+      </div>
 
-      {/* Torch glow effects */}
-      <div
-        className="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDuration: "4s" }}
-      />
-      <div
-        className="absolute bottom-20 right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDuration: "5s", animationDelay: "1s" }}
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-block mb-4">
-            <div className="flex items-center justify-center gap-3">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
-              <div className="w-3 h-3 rotate-45 border-2 border-primary" />
-              <div className="h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
-            </div>
+      <div className="relative z-10 container mx-auto px-4 max-w-5xl">
+        {/* Leaderboard Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
+            <Trophy className="w-3 h-3" />
+            <span>Hall of Fame</span>
           </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold text-engraved tracking-wider uppercase bg-gradient-to-b from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent mb-4">
-            Hall of Heroes
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+            Top <span className="text-gradient">Seekers</span>
           </h1>
-          <p className="text-lg text-muted-foreground font-serif max-w-2xl mx-auto">
-            The mightiest warriors of Stacks Quest
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
+            The mightiest minds in the Stacks ecosystem. Their names are etched into the blockchain for eternity.
           </p>
         </div>
 
-        <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-          <CardHeader>
-            <CardTitle className="text-2xl font-serif text-foreground">Leaderboard</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow className="border-b border-primary/20">
-                  <TableHead className="w-16 text-center">Rank</TableHead>
-                  <TableHead>Address</TableHead>
-                  <TableHead className="text-center">Level</TableHead>
-                  <TableHead className="text-center">XP</TableHead>
-                  <TableHead className="text-center">Quests</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {leaderboardData.map((entry) => (
-                  <TableRow key={entry.rank} className="border-b border-primary/10 hover:bg-primary/5 transition-colors">
-                    <TableCell className="text-center font-mono">
-                      <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${entry.rank <= 3 ? 'bg-amber-500/20 text-amber-400' : 'bg-muted'} font-bold`}>
-                        {entry.rank}
-                      </span>
-                    </TableCell>
-                    <TableCell className="font-mono">
-                      <Link href={`/profile/${entry.address}`} className="hover:text-primary transition-colors">
-                        {entry.address}
-                      </Link>
-                    </TableCell>
-                    <TableCell className="text-center">
-                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                        {entry.level}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-center font-mono">{entry.xp.toLocaleString()}</TableCell>
-                    <TableCell className="text-center">{entry.questsCompleted}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+        {/* Podium / Top 3 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {topSeekers.slice(0, 3).map((seeker, i) => (
+            <motion.div
+              key={seeker.address}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+              className={`glass p-8 rounded-3xl text-center relative overflow-hidden ${i === 0 ? 'border-primary/50 bg-primary/5' : ''}`}
+            >
+              {i === 0 && <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />}
+              <div className="flex justify-center mb-6">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl
+                  ${i === 0 ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20' : 
+                    i === 1 ? 'bg-slate-400 text-slate-900' : 'bg-orange-700 text-orange-100'}`}>
+                  {i === 0 ? <Trophy className="w-8 h-8" /> : i === 1 ? <Medal className="w-8 h-8" /> : <Star className="w-8 h-8" />}
+                </div>
+              </div>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">{seeker.title}</h3>
+              <p className="text-2xl font-bold mb-4">{seeker.address}</p>
+              <div className="flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-widest text-primary">
+                <span>{seeker.chambers} Chambers</span>
+                <span className="w-1 h-1 bg-primary/40 rounded-full" />
+                <span>{seeker.xp.toLocaleString()} XP</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-        <div className="mt-8 text-center">
-          <Link 
-            href="/" 
-            className="inline-flex items-center px-6 py-3 border border-primary/30 bg-primary/10 hover:bg-primary/20 text-foreground rounded-lg font-medium transition-colors"
-          >
-            ← Return to Home
-          </Link>
+        {/* Full Table */}
+        <div className="glass rounded-3xl overflow-hidden">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="border-b border-white/5 bg-white/5">
+                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Rank</th>
+                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Seeker</th>
+                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Title</th>
+                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Chambers</th>
+                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 text-right">XP</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {topSeekers.map((seeker, i) => (
+                <motion.tr 
+                  key={seeker.address}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + i * 0.05 }}
+                  className="group hover:bg-white/[0.02] transition-colors"
+                >
+                  <td className="px-8 py-6">
+                    <span className="text-lg font-bold text-muted-foreground/40 group-hover:text-primary transition-colors">#{seeker.rank}</span>
+                  </td>
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                        <Shield className="w-4 h-4 text-primary/40" />
+                      </div>
+                      <span className="font-bold">{seeker.address}</span>
+                    </div>
+                  </td>
+                  <td className="px-8 py-6">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">{seeker.title}</span>
+                  </td>
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-2">
+                      <ArrowUp className="w-3 h-3 text-primary" />
+                      <span className="font-bold">{seeker.chambers}</span>
+                    </div>
+                  </td>
+                  <td className="px-8 py-6 text-right">
+                    <span className="font-bold text-primary">{seeker.xp.toLocaleString()}</span>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
