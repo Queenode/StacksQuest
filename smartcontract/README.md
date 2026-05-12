@@ -12,7 +12,9 @@ The core contract that manages user learning progress and topic completion.
 - **Quiz Management**: Record scores and attempts for each quiz
 - **Sequential Unlocking**: Enforce topic dependencies (must complete previous topics)
 - **Achievement Validation**: Ensure minimum passing score (70%) for progression
-- **Leaderboard**: Maintain and update user rankings
+- **XP Engine**: Earn 100 XP per topic completion + 50 XP bonus for perfect scores
+- **Streak Tracking**: On-chain daily streak counter to reward consistent learners
+- **Auto-Leaderboard**: Leaderboard entries update automatically on each quiz attempt
 - **Fortress Master**: Track completion of all topics
 
 #### 🛠️ Main Functions
@@ -43,8 +45,10 @@ The core contract that manages user learning progress and topic completion.
   } {
     topics-completed: uint,
     total-score: uint,
+    total-xp: uint,
+    streak-count: uint,
     quest-started: uint,
-    last-active: uint,
+    last-active-day: uint,
     fortress-master: bool
   })
 ```
