@@ -1,6 +1,5 @@
 import { createAppKit } from '@reown/appkit/react'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { mainnet, arbitrum } from '@wagmi/core/chains'
 import { defineChain } from 'viem'
 
 // Define Stacks Mainnet if not already in Wagmi (usually it's not)
@@ -40,7 +39,7 @@ export const metadata = {
 }
 
 // 3. Create Wagmi Adapter
-export const chains = [mainnet, arbitrum, stacksMainnet, stacksTestnet] as const
+export const chains = [stacksMainnet, stacksTestnet] as const
 export const wagmiAdapter = new WagmiAdapter({
   chains: chains as any,
   projectId,
