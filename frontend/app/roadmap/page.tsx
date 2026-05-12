@@ -127,18 +127,26 @@ export default function RoadmapPage() {
                   <div className="flex flex-col md:flex-row md:items-center gap-6">
                     {/* Status Indicator */}
                     <div className={`
-                      w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold
+                      w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold relative
                       ${completed ? "bg-primary text-primary-foreground" : 
                         unlocked ? "bg-primary/10 text-primary border border-primary/20" : 
                         "bg-white/5 text-muted-foreground border border-white/10"}
                     `}>
                       {completed ? <ShieldCheck className="w-7 h-7" /> : topic.id}
+                      {unlocked && !completed && (
+                        <motion.div 
+                          className="absolute inset-0 bg-primary/20 rounded-xl blur-md -z-10"
+                          animate={{ opacity: [0.2, 0.5, 0.2] }}
+                          transition={{ repeat: Infinity, duration: 2 }}
+                        />
+                      )}
                     </div>
 
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Chamber {topic.id}</span>
                         {completed && <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Mastered</span>}
+                        {unlocked && !completed && <span className="text-[10px] font-bold uppercase tracking-widest text-orange-400 animate-pulse">Current Trial</span>}
                       </div>
                       <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{topic.title}</h3>
                       <p className="text-sm text-muted-foreground line-clamp-1 font-light">{topic.description}</p>
