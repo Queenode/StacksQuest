@@ -51,7 +51,7 @@
 )
 
 (define-read-only (get-token-uri (token-id uint))
-  (ok (some (get token-uri (unwrap! (map-get? token-metadata token-id) (err ERR-NOT-FOUND)))))
+  (ok (some (get token-uri (unwrap! (map-get? token-metadata token-id) ERR-NOT-FOUND))))
 )
 
 (define-read-only (get-owner (token-id uint))
