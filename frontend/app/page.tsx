@@ -1,91 +1,114 @@
+'use client';
+
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { FortressButton } from "@/components/fortress-button"
 import { ConnectButton } from "@/components/ConnectButton"
+import { Shield, BookOpen, Swords, Trophy } from "lucide-react"
 
 export default function LandingPage() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    },
+  }
+
   return (
-    <div className="min-h-screen relative overflow-hidden bg-linear-to-b from-[#1a1a1a] via-[#242424] to-[#1a1a1a]">
-      {/* Stone texture overlay */}
-      <div className="absolute inset-0 stone-texture opacity-40" />
+    <div className="min-h-screen relative overflow-hidden flex flex-col items-center justify-center bg-background">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 -left-10 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-10 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
 
-      {/* Torch glow effects */}
-      <div
-        className="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDuration: "4s" }}
-      />
-      <div
-        className="absolute top-40 right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDuration: "5s", animationDelay: "1s" }}
-      />
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 w-full max-w-7xl px-4 flex flex-col items-center text-center"
+      >
+        <motion.div variants={itemVariants} className="mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium tracking-widest uppercase">
+            <Shield className="w-3 h-3" />
+            <span>The Fortress is Open</span>
+          </div>
+        </motion.div>
 
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
-        {/* Connect Button */}
-        <div className="absolute top-6 right-6">
+        <motion.h1 
+          variants={itemVariants}
+          className="text-7xl md:text-9xl font-bold tracking-tighter mb-6"
+        >
+          <span className="block text-foreground">Stacks</span>
+          <span className="text-gradient drop-shadow-2xl">Quest</span>
+        </motion.h1>
+
+        <motion.p 
+          variants={itemVariants}
+          className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed font-light"
+        >
+          Master Bitcoin through the lens of Stacks. Embark on a journey through 15 chambers of knowledge and emerge as a <span className="text-foreground font-medium">Fortress Master</span>.
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-20">
+          <Link href="/roadmap">
+            <FortressButton size="xl" className="group h-14 px-10 text-lg">
+              Enter the Fortress
+              <motion.span
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className="ml-2 inline-block"
+              >
+                →
+              </motion.span>
+            </FortressButton>
+          </Link>
           <ConnectButton />
-        </div>
+        </motion.div>
 
-        {/* Fortress gate decoration */}
-        <div className="mb-12 space-y-6 text-center">
-          <div className="inline-block">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="h-px w-16 bg-linear-to-r from-transparent via-primary to-transparent" />
-              <div className="w-3 h-3 rotate-45 border-2 border-primary" />
-              <div className="h-px w-16 bg-linear-to-r from-transparent via-primary to-transparent" />
+        {/* Features Grid */}
+        <motion.div 
+          variants={itemVariants}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
+        >
+          {[
+            { icon: BookOpen, title: "Learn", desc: "Interactive lessons on BTC & Stacks" },
+            { icon: Swords, title: "Conquer", desc: "On-chain quizzes and challenges" },
+            { icon: Trophy, title: "Earn", desc: "Exclusive achievement NFTs" }
+          ].map((feature, i) => (
+            <div key={i} className="glass rounded-2xl p-6 text-left hover:border-primary/40 transition-colors group">
+              <feature.icon className="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{feature.desc}</p>
             </div>
-          </div>
+          ))}
+        </motion.div>
+      </motion.div>
 
-          {/* Main title - engraved style */}
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-engraved tracking-wider uppercase bg-linear-to-b from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
-            Stacks
-            <br />
-            Quest
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-serif max-w-2xl mx-auto leading-relaxed">
-            Learn Bitcoin. Build on Stacks. Anchored to Truth.
-          </p>
-
-          <div className="inline-block mt-4">
-            <div className="flex items-center justify-center gap-3">
-              <div className="h-px w-16 bg-linear-to-r from-transparent via-primary to-transparent" />
-              <div className="w-3 h-3 rotate-45 border-2 border-primary" />
-              <div className="h-px w-16 bg-linear-to-r from-transparent via-primary to-transparent" />
-            </div>
-          </div>
-        </div>
-
-        {/* Call to action */}
-        <Link href="/roadmap">
-          <FortressButton size="lg" className="mt-8">
-            Enter the Fortress
-          </FortressButton>
-        </Link>
-
-        {/* Bottom decorative elements */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-muted-foreground/50 uppercase tracking-widest">
-          <div className="w-8 h-px bg-muted-foreground/30" />
-          <span>Knowledge Awaits</span>
-          <div className="w-8 h-px bg-muted-foreground/30" />
-        </div>
-      </div>
-
-      {/* Floating dust particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/20 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 10}s`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Footer Branding */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 text-[10px] text-muted-foreground/40 uppercase tracking-[0.2em]"
+      >
+        <span>Anchored to Truth</span>
+        <div className="w-10 h-px bg-muted-foreground/20" />
+        <span>Bitcoin Security</span>
+      </motion.div>
     </div>
   )
 }
