@@ -2,12 +2,12 @@ import { callReadOnlyFunction, cvToJSON, uintCV, principalCV } from '@stacks/tra
 
 // Contract deployment addresses (update after deployment)
 const PROGRESS_CONTRACT = {
-  address: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
+  address: 'SP1B27X06M4SF2TE46G3VBA7KSR4KBMJCTHM6BES4',
   name: 'stacks-quest-progress',
 };
 
 const NFT_CONTRACT = {
-  address: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
+  address: 'SP1B27X06M4SF2TE46G3VBA7KSR4KBMJCTHM6BES4',
   name: 'stacks-quest-nft',
 };
 
