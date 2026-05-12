@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MainNav from "@/components/MainNav";
+import { NetworkBanner } from "@/components/NetworkBanner";
 import { Providers } from "./providers";
 import '@reown/appkit/styles.css';
 
@@ -32,6 +33,7 @@ export default function RootLayout({
         <Providers>
           <div className="relative flex min-h-screen flex-col">
             <MainNav />
+            <NetworkBanner />
             <main className="flex-1">
               {children}
             </main>
