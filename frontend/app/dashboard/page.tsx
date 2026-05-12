@@ -1,268 +1,178 @@
+'use client';
+
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { FortressButton } from "@/components/fortress-button";
+import { Shield, Zap, Trophy, History, ArrowUpRight, BarChart3, Wallet, GraduationCap } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
-type Quest = {
-  id: string;
-  title: string;
-  status: 'completed' | 'in-progress' | 'available';
-  xp: number;
-  difficulty: 'easy' | 'medium' | 'hard';
-};
-
-type RecentActivity = {
-  id: string;
-  type: 'quest' | 'purchase' | 'level-up' | 'achievement';
-  title: string;
-  timestamp: string;
-  value?: number;
-};
-
-// Mock data - in a real app, this would come from an API
+// Mock data reflecting the 15 Chambers
 const userStats = {
-  level: 8,
-  xp: 1250,
-  xpToNextLevel: 2000,
-  questsCompleted: 12,
-  achievementsUnlocked: 5,
-  rank: 42,
-  totalUsers: 1000,
-  currency: 3500,
-  currencySymbol: 'STX',
+  masteryLevel: 4,
+  chambersConquered: 6,
+  totalChambers: 15,
+  xp: 4200,
+  xpToNextLevel: 5000,
+  stxBalance: "1,240.50",
+  rank: 12,
+  totalSeekers: 850,
 };
 
-const recentQuests: Quest[] = [
-  { id: '1', title: 'Dragon Slayer', status: 'in-progress', xp: 500, difficulty: 'hard' },
-  { id: '2', title: 'Potion Master', status: 'available', xp: 200, difficulty: 'medium' },
-  { id: '3', title: 'First Steps', status: 'completed', xp: 100, difficulty: 'easy' },
+const activeQuests = [
+  { id: '1', title: 'Proof of Transfer (PoX)', chamber: 3, progress: 65, difficulty: 'Medium' },
+  { id: '2', title: 'Clarity Smart Contracts', chamber: 2, progress: 100, difficulty: 'Hard' },
+  { id: '3', title: 'Bitcoin Fundamentals', chamber: 4, progress: 10, difficulty: 'Easy' },
 ];
 
-const recentActivities: RecentActivity[] = [
-  { id: '1', type: 'quest', title: 'Completed: Treasure Hunt', timestamp: '2 hours ago', value: 150 },
-  { id: '2', type: 'level-up', title: 'Level Up! Reached Level 8', timestamp: '1 day ago' },
-  { id: '3', type: 'purchase', title: 'Purchased: Elven Chainmail', timestamp: '2 days ago', value: 850 },
-  { id: '4', type: 'achievement', title: 'Unlocked: Master Explorer', timestamp: '3 days ago' },
+const activityHistory = [
+  { id: '1', type: 'chamber', title: 'Conquered: Bitcoin Mining', time: '2h ago', xp: 450 },
+  { id: '2', type: 'achievement', title: 'Unlocked: PoX Pioneer', time: '1d ago', xp: 1000 },
+  { id: '3', type: 'reward', title: 'STX Reward Distribution', time: '2d ago', value: '25.0 STX' },
 ];
-
-const difficultyColors = {
-  easy: 'bg-green-500',
-  medium: 'bg-yellow-500',
-  hard: 'bg-red-500',
-};
-
-const activityIcons = {
-  quest: '🏆',
-  purchase: '🛒',
-  'level-up': '⬆️',
-  achievement: '🏅',
-};
 
 export default function DashboardPage() {
-  const xpPercentage = Math.round((userStats.xp / userStats.xpToNextLevel) * 100);
-  const rankPercentage = Math.round(((userStats.totalUsers - userStats.rank) / userStats.totalUsers) * 100);
+  const xpProgress = (userStats.xp / userStats.xpToNextLevel) * 100;
+  const chamberProgress = (userStats.chambersConquered / userStats.totalChambers) * 100;
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-linear-to-b from-[#1a1a1a] via-[#242424] to-[#1a1a1a] py-12 px-4 sm:px-6 lg:px-8">
-      {/* Stone texture overlay */}
-      <div className="absolute inset-0 stone-texture opacity-40" />
+    <div className="min-h-screen relative pb-20 bg-background pt-24">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[100px]" />
+      </div>
 
-      {/* Torch glow effects */}
-      <div
-        className="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDuration: "4s" }}
-      />
-      <div
-        className="absolute bottom-20 right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDuration: "5s", animationDelay: "1s" }}
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+      <div className="relative z-10 container mx-auto px-4 max-w-7xl">
+        {/* Dashboard Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-engraved tracking-wider uppercase bg-linear-to-b from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent mb-2">
-              Adventurer's Dashboard
-            </h1>
-            <p className="text-lg text-muted-foreground font-serif">
-              Welcome back, Brave Explorer!
-            </p>
+            <div className="flex items-center gap-2 text-primary mb-2">
+              <Shield className="w-5 h-5" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Seeker Profile</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Your <span className="text-gradient">Chamber Dashboard</span></h1>
+            <p className="text-muted-foreground mt-2 font-light">Track your journey through the 15 Chambers of Truth.</p>
           </div>
-          <div className="mt-4 md:mt-0 flex gap-4
-          ">
-            <Button variant="outline" className="border-primary/30 text-foreground hover:bg-primary/10">
-              Edit Profile
-            </Button>
-            <Button className="bg-amber-600 hover:bg-amber-700">
-              New Quest
-            </Button>
+          <div className="flex gap-4">
+            <Link href="/roadmap">
+              <FortressButton variant="outline" className="h-12 px-6">
+                Continue Path
+              </FortressButton>
+            </Link>
+            <FortressButton className="h-12 px-6">
+              Claim Rewards
+            </FortressButton>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-            <CardHeader className="pb-2">
-              <CardDescription>Current Level</CardDescription>
-              <CardTitle className="text-3xl">{userStats.level}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-sm text-muted-foreground mb-2">
-                {userStats.xp} / {userStats.xpToNextLevel} XP
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {[
+            { label: "Mastery Level", value: userStats.masteryLevel, icon: Zap, sub: `Rank #${userStats.rank} among ${userStats.totalSeekers}` },
+            { label: "Chambers Conquered", value: `${userStats.chambersConquered}/${userStats.totalChambers}`, icon: Trophy, progress: chamberProgress },
+            { label: "Knowledge XP", value: userStats.xp.toLocaleString(), icon: GraduationCap, progress: xpProgress },
+            { label: "STX Holdings", value: userStats.stxBalance, icon: Wallet, sub: "Available for Stacking" },
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="glass p-6 rounded-2xl group hover:border-primary/40 transition-colors"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <stat.icon className="w-5 h-5" />
+                </div>
+                {stat.progress !== undefined && (
+                  <span className="text-[10px] font-bold text-primary">{Math.round(stat.progress)}%</span>
+                )}
               </div>
-              <Progress value={xpPercentage} className="h-2 bg-background" />
-            </CardContent>
-          </Card>
-
-          <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-            <CardHeader className="pb-2">
-              <CardDescription>Rank</CardDescription>
-              <CardTitle className="text-3xl">#{userStats.rank}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-sm text-muted-foreground mb-2">
-                Top {rankPercentage}% of {userStats.totalUsers} adventurers
-              </div>
-              <Progress value={rankPercentage} className="h-2 bg-background" />
-            </CardContent>
-          </Card>
-
-          <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-            <CardHeader className="pb-2">
-              <CardDescription>Quests Completed</CardDescription>
-              <CardTitle className="text-3xl">{userStats.questsCompleted}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-sm text-muted-foreground">
-                Keep going, brave adventurer!
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-            <CardHeader className="pb-2">
-              <CardDescription>Currency</CardDescription>
-              <CardTitle className="text-3xl">{userStats.currency} {userStats.currencySymbol}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex gap-2">
-                <Button size="sm" className="bg-amber-600 hover:bg-amber-700">
-                  Earn More
-                </Button>
-                <Button variant="outline" size="sm" className="border-primary/30 text-foreground hover:bg-primary/10">
-                  Withdraw
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">{stat.label}</p>
+              <h3 className="text-2xl font-bold mb-2">{stat.value}</h3>
+              {stat.progress !== undefined ? (
+                <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${stat.progress}%` }}
+                    className="h-full bg-primary"
+                  />
+                </div>
+              ) : (
+                <p className="text-[10px] text-muted-foreground">{stat.sub}</p>
+              )}
+            </motion.div>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Recent Quests */}
-          <Card className="lg:col-span-2 bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-            <CardHeader>
-              <CardTitle>Your Quests</CardTitle>
-              <CardDescription>Continue your journey</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {recentQuests.map((quest) => (
-                  <div key={quest.id} className="flex items-center justify-between p-4 bg-muted/20 rounded-lg hover:bg-muted/30 transition-colors">
-                    <div>
-                      <div className="font-medium">{quest.title}</div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className={`w-2 h-2 rounded-full ${difficultyColors[quest.difficulty]}`}></span>
-                        {quest.difficulty.charAt(0).toUpperCase() + quest.difficulty.slice(1)}
-                        <span className="mx-1">•</span>
-                        {quest.xp} XP
-                      </div>
-                    </div>
-                    <Button 
-                      variant={quest.status === 'completed' ? 'outline' : 'default'} 
-                      size="sm"
-                      className={quest.status === 'completed' ? 'border-green-500 text-green-500 hover:bg-green-500/10' : ''}
-                    >
-                      {quest.status === 'completed' ? 'Completed' : 
-                       quest.status === 'in-progress' ? 'Continue' : 'Start'}
-                    </Button>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 text-center">
-                <Button variant="ghost" className="text-foreground">
-                  View All Quests →
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Recent Activity */}
-          <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10">
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>Your latest achievements</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {recentActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-3">
-                    <div className="text-2xl">
-                      {activityIcons[activity.type]}
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-medium">{activity.title}</div>
-                      <div className="text-sm text-muted-foreground">{activity.timestamp}</div>
-                      {activity.value && (
-                        <div className="text-sm text-green-400">+{activity.value} {activity.type === 'purchase' ? 'STX' : 'XP'}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 text-center">
-                <Button variant="ghost" className="text-foreground">
-                  View All Activity →
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Quick Actions */}
-        <Card className="bg-background/80 backdrop-blur-sm border border-primary/20 shadow-lg shadow-primary/10 mb-8">
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Manage your adventure</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Button variant="outline" className="flex flex-col h-24 justify-center items-center gap-2 border-primary/20 hover:bg-primary/5">
-                <span className="text-2xl">🏛️</span>
-                <span>Guild Hall</span>
-              </Button>
-              <Button variant="outline" className="flex flex-col h-24 justify-center items-center gap-2 border-primary/20 hover:bg-primary/5">
-                <span className="text-2xl">🎒</span>
-                <span>Inventory</span>
-              </Button>
-              <Button variant="outline" className="flex flex-col h-24 justify-center items-center gap-2 border-primary/20 hover:bg-primary/5">
-                <span className="text-2xl">🏆</span>
-                <span>Achievements</span>
-              </Button>
-              <Button variant="outline" className="flex flex-col h-24 justify-center items-center gap-2 border-primary/20 hover:bg-primary/5">
-                <span className="text-2xl">⚙️</span>
-                <span>Settings</span>
-              </Button>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Active Chamber Trials */}
+          <div className="lg:col-span-2 space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-primary" />
+                Active Trials
+              </h2>
+              <Link href="/roadmap" className="text-xs font-bold text-primary hover:underline uppercase tracking-widest">
+                View All
+              </Link>
             </div>
-          </CardContent>
-        </Card>
+            <div className="grid grid-cols-1 gap-4">
+              {activeQuests.map((quest, i) => (
+                <div key={quest.id} className="glass p-6 rounded-2xl flex flex-col md:flex-row md:items-center gap-6 group hover:bg-white/[0.02] transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-xl font-bold border border-white/10 group-hover:border-primary/40 transition-colors">
+                    {quest.chamber}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Chamber {quest.chamber}</span>
+                      <span className={`text-[10px] font-bold uppercase tracking-widest ${quest.difficulty === 'Hard' ? 'text-red-400' : 'text-primary'}`}>
+                        {quest.difficulty}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold">{quest.title}</h3>
+                  </div>
+                  <div className="md:w-48">
+                    <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest mb-2">
+                      <span>Progress</span>
+                      <span>{quest.progress}%</span>
+                    </div>
+                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary" style={{ width: `${quest.progress}%` }} />
+                    </div>
+                  </div>
+                  <FortressButton size="sm" variant={quest.progress === 100 ? 'outline' : 'default'} className="h-10 px-6">
+                    {quest.progress === 100 ? 'Review' : 'Continue'}
+                  </FortressButton>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="text-center">
-          <Link 
-            href="/" 
-            className="inline-flex items-center px-6 py-3 border border-primary/30 bg-primary/10 hover:bg-primary/20 text-foreground rounded-lg font-medium transition-colors"
-          >
-            ← Return to Home
-          </Link>
+          {/* Activity Feed */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold flex items-center gap-2">
+              <History className="w-5 h-5 text-primary" />
+              Recent Activity
+            </h2>
+            <div className="glass rounded-2xl overflow-hidden divide-y divide-white/5">
+              {activityHistory.map((activity) => (
+                <div key={activity.id} className="p-4 hover:bg-white/[0.02] transition-colors group">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 p-1.5 rounded bg-primary/10 text-primary">
+                      <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold group-hover:text-primary transition-colors">{activity.title}</h4>
+                      <p className="text-[10px] text-muted-foreground mt-0.5">{activity.time} • {activity.xp ? `+${activity.xp} XP` : activity.value}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <button className="w-full py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 hover:text-primary transition-colors">
+                View Full History
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
