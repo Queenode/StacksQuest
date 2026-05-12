@@ -4,19 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FortressButton } from "@/components/fortress-button";
 import { Shield, Zap, Trophy, History, ArrowUpRight, BarChart3, Wallet, GraduationCap } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
-
-// Mock data reflecting the 15 Chambers
-const userStats = {
-  masteryLevel: 4,
-  chambersConquered: 6,
-  totalChambers: 15,
-  xp: 4200,
-  xpToNextLevel: 5000,
-  stxBalance: "1,240.50",
-  rank: 12,
-  totalSeekers: 850,
-};
+import { XPProgress } from "@/components/XPProgress";
+import { AchievementGrid } from "@/components/AchievementGrid";
 
 const activeQuests = [
   { id: '1', title: 'Proof of Transfer (PoX)', chamber: 3, progress: 65, difficulty: 'Medium' },
@@ -30,8 +19,29 @@ const activityHistory = [
   { id: '3', type: 'reward', title: 'STX Reward Distribution', time: '2d ago', value: '25.0 STX' },
 ];
 
+// Mock data reflecting the 15 Chambers
+const userStats = {
+  level: 4,
+  chambersConquered: 6,
+  totalChambers: 15,
+  xp: 4200,
+  xpToNextLevel: 5000,
+  stxBalance: "1,240.50",
+  rank: 12,
+  totalSeekers: 850,
+  streak: 5
+};
+
+const userBadges = [
+  { topicId: 1, title: "Genesis Seeker", earned: true, tokenId: 452 },
+  { topicId: 2, title: "Clarity Adept", earned: true, tokenId: 891 },
+  { topicId: 3, title: "PoX Pioneer", earned: true, tokenId: 1024 },
+  { topicId: 4, title: "Bitcoin Anchor", earned: false },
+  { topicId: 5, title: "Stacking Master", earned: false },
+  { topicId: 6, title: "Mining Scout", earned: false },
+];
+
 export default function DashboardPage() {
-  const xpProgress = (userStats.xp / userStats.xpToNextLevel) * 100;
   const chamberProgress = (userStats.chambersConquered / userStats.totalChambers) * 100;
 
   return (
@@ -65,43 +75,34 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {[
-            { label: "Mastery Level", value: userStats.masteryLevel, icon: Zap, sub: `Rank #${userStats.rank} among ${userStats.totalSeekers}` },
-            { label: "Chambers Conquered", value: `${userStats.chambersConquered}/${userStats.totalChambers}`, icon: Trophy, progress: chamberProgress },
-            { label: "Knowledge XP", value: userStats.xp.toLocaleString(), icon: GraduationCap, progress: xpProgress },
-            { label: "STX Holdings", value: userStats.stxBalance, icon: Wallet, sub: "Available for Stacking" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="glass p-6 rounded-2xl group hover:border-primary/40 transition-colors"
-            >
-              <div className="flex items-start justify-between mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          <div className="lg:col-span-1">
+            <XPProgress 
+              currentXP={userStats.xp} 
+              nextLevelXP={userStats.xpToNextLevel} 
+              level={userStats.level} 
+              streak={userStats.streak} 
+            />
+            
+            <div className="glass p-6 rounded-2xl mt-6">
+              <div className="flex items-center justify-between mb-4">
                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  <stat.icon className="w-5 h-5" />
+                  <Wallet className="w-5 h-5" />
                 </div>
-                {stat.progress !== undefined && (
-                  <span className="text-[10px] font-bold text-primary">{Math.round(stat.progress)}%</span>
-                )}
+                <span className="text-[10px] font-bold text-muted-foreground uppercase">Available</span>
               </div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">{stat.label}</p>
-              <h3 className="text-2xl font-bold mb-2">{stat.value}</h3>
-              {stat.progress !== undefined ? (
-                <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${stat.progress}%` }}
-                    className="h-full bg-primary"
-                  />
-                </div>
-              ) : (
-                <p className="text-[10px] text-muted-foreground">{stat.sub}</p>
-              )}
-            </motion.div>
-          ))}
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">STX Holdings</p>
+              <h3 className="text-3xl font-bold">{userStats.stxBalance} <span className="text-sm font-normal text-muted-foreground">STX</span></h3>
+              <p className="text-[10px] text-muted-foreground mt-2 flex items-center gap-1">
+                <Zap className="w-3 h-3 text-primary" />
+                Earning 8.5% APY via Stacking
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-2">
+            <AchievementGrid badges={userBadges} isFortressMaster={userStats.chambersConquered === userStats.totalChambers} />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
