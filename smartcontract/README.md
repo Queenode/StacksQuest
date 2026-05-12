@@ -2,6 +2,14 @@
 
 This directory contains the Clarity smart contracts that power the Stacks Quest learning platform on the Stacks blockchain. These contracts handle user progress tracking, achievement NFTs, and learning path management.
 
+## 💎 Mainnet Deployment
+The Stacks Quest engine is officially live on Stacks Mainnet:
+
+- **Progress Contract**: `SP1B27X06M4SF2TE46G3VBA7KSR4KBMJCTHM6BES4.stacks-quest-progress`
+- **Achievement NFT**: `SP1B27X06M4SF2TE46G3VBA7KSR4KBMJCTHM6BES4.stacks-quest-nft`
+
+---
+
 ## 📜 Contracts Overview
 
 ### 1. `stacks-quest-progress.clar`
