@@ -107,7 +107,7 @@
       achievement-type: ACHIEVEMENT-TOPIC-COMPLETE,
       topic-id: topic-id,
       earned-at: burn-block-height,
-      token-uri: (concat "ipfs://stacks-quest/topic-" (concat (int-to-ascii topic-id) ".json"))
+      token-uri: (concat "ipfs://stacks-quest/topic-" (concat (uint-to-ascii topic-id) ".json"))
     })
     
     ;; Update user achievements
@@ -171,7 +171,7 @@
 )
 
 ;; Helper function to convert uint to ascii (handles 1-99)
-(define-private (int-to-ascii (value uint))
+(define-private (uint-to-ascii (value uint))
   (if (<= value u9)
     (unwrap-panic (element-at "0123456789" value))
     (let (
