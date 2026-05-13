@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useProfile } from '@/contexts/ProfileContext';
-import { isAuthenticated, userSession } from '@/app/user-session';
-import { useAccount } from 'wagmi';
+import { useStacksAuth } from '@/contexts/StacksAuthContext';
 import { useState, useEffect } from 'react';
 import {
   DropdownMenu,
@@ -18,7 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export function UserMenu() {
   const { profile } = useProfile();
-  const { address } = useAccount();
+  const { user, disconnect } = useStacksAuth();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
@@ -26,12 +25,12 @@ export function UserMenu() {
     setMounted(true);
   }, []);
 
-  if (!mounted || !isAuthenticated() || !address) {
+  if (!mounted || !user?.isConnected || !user?.address) {
     return null;
   }
 
   const handleSignOut = () => {
-    userSession.signUserOut('/');
+    disconnect();
     router.push('/');
   };
 
@@ -39,7 +38,7 @@ export function UserMenu() {
     if (profile?.username) {
       return profile.username.charAt(0).toUpperCase();
     }
-    return address.slice(2, 4).toUpperCase();
+    return user.address.slice(0, 2).toUpperCase();
   };
 
   return (
@@ -64,7 +63,7 @@ export function UserMenu() {
               {profile?.username || 'Anonymous'}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {`${address.slice(0, 6)}...${address.slice(-4)}`}
+              {`${user.address.slice(0, 6)}...${user.address.slice(-4)}`}
             </p>
           </div>
         </DropdownMenuLabel>

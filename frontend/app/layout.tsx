@@ -4,7 +4,6 @@ import "./globals.css";
 import MainNav from "@/components/MainNav";
 import { NetworkBanner } from "@/components/NetworkBanner";
 import { Providers } from "./providers";
-import '@reown/appkit/styles.css';
 
 const geistSans = Geist({
   variable: "--font-font-sans",
@@ -20,6 +19,9 @@ export const metadata: Metadata = {
   title: "Stacks Quest | Learn Bitcoin & Build on Stacks",
   description: "Master Bitcoin and Stacks through interactive quests and challenges. Anchored to Truth.",
   keywords: ["Stacks", "Bitcoin", "Clarity", "Smart Contracts", "Web3", "Learning"],
+  other: {
+    "talentapp:project_verification": "21ce105ebab2867d2e9d8df3ef130d444205cdbe8180f78f9e7ef2a45809e98dfd82287bb0fb2a8751b1adccf15b3bb53711b1bf0fec7e39317f866e45564538"
+  }
 };
 
 export default function RootLayout({

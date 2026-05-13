@@ -8,7 +8,7 @@ import { useSound } from "@/lib/use-sound"
 
 interface FortressButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "outline"
-  size?: "default" | "lg"
+  size?: "default" | "sm" | "lg" | "xl"
 }
 
 export const FortressButton = forwardRef<HTMLButtonElement, FortressButtonProps>(
@@ -37,8 +37,10 @@ export const FortressButton = forwardRef<HTMLButtonElement, FortressButtonProps>
             "hover:shadow-primary/40",
           ],
           variant === "outline" && ["bg-transparent text-primary", "border-2 border-primary", "hover:bg-primary/10"],
+          size === "sm" && "px-4 py-2 text-xs",
           size === "default" && "px-8 py-3 text-sm",
           size === "lg" && "px-12 py-4 text-base",
+          size === "xl" && "px-16 py-6 text-xl",
           className,
         )}
         onClick={handleClick}

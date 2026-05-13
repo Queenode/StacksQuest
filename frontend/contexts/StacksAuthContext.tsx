@@ -40,13 +40,14 @@ export function StacksAuthProvider({ children }: { children: ReactNode }) {
 
   const connect = async () => {
     try {
-      const { showConnect } = await import('@stacks/connect');
+      const moduleName = '@stacks/connect';
+      const { showConnect } = await import(/* webpackIgnore: true */ moduleName);
       showConnect({
         appDetails: {
           name: 'Stacks Quest',
           icon: '/icon.png',
         },
-        onFinish: (data) => {
+        onFinish: (data: any) => {
           const address = data.userSession.loadUserData().profile.stxAddress.mainnet;
           setUser({ address, isConnected: true });
           localStorage.setItem('stacks_quest_address', address);

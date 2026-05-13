@@ -1,4 +1,4 @@
-import { callReadOnlyFunction, cvToJSON, uintCV, principalCV } from '@stacks/transactions';
+import { fetchCallReadOnlyFunction, cvToJSON, uintCV, principalCV } from '@stacks/transactions';
 
 // Contract deployment addresses (update after deployment)
 const PROGRESS_CONTRACT = {
@@ -18,7 +18,7 @@ const NETWORK_URL = 'https://api.mainnet.hiro.so';
  */
 export async function getUserProgress(userAddress: string) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: PROGRESS_CONTRACT.address,
       contractName: PROGRESS_CONTRACT.name,
       functionName: 'get-user-progress',
@@ -38,7 +38,7 @@ export async function getUserProgress(userAddress: string) {
  */
 export async function getTopicProgress(userAddress: string, topicId: number) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: PROGRESS_CONTRACT.address,
       contractName: PROGRESS_CONTRACT.name,
       functionName: 'get-topic-progress',
@@ -58,7 +58,7 @@ export async function getTopicProgress(userAddress: string, topicId: number) {
  */
 export async function isTopicUnlocked(userAddress: string, topicId: number) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: PROGRESS_CONTRACT.address,
       contractName: PROGRESS_CONTRACT.name,
       functionName: 'is-topic-unlocked',
@@ -78,7 +78,7 @@ export async function isTopicUnlocked(userAddress: string, topicId: number) {
  */
 export async function isFortressMaster(userAddress: string) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: PROGRESS_CONTRACT.address,
       contractName: PROGRESS_CONTRACT.name,
       functionName: 'is-fortress-master',
@@ -98,7 +98,7 @@ export async function isFortressMaster(userAddress: string) {
  */
 export async function getLeaderboardEntry(userAddress: string) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: PROGRESS_CONTRACT.address,
       contractName: PROGRESS_CONTRACT.name,
       functionName: 'get-leaderboard-entry',
@@ -118,7 +118,7 @@ export async function getLeaderboardEntry(userAddress: string) {
  */
 export async function getUserAchievements(userAddress: string) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: NFT_CONTRACT.address,
       contractName: NFT_CONTRACT.name,
       functionName: 'get-user-achievements',
@@ -138,7 +138,7 @@ export async function getUserAchievements(userAddress: string) {
  */
 export async function hasTopicBadge(userAddress: string, topicId: number) {
   try {
-    const result = await callReadOnlyFunction({
+    const result = await fetchCallReadOnlyFunction({
       contractAddress: NFT_CONTRACT.address,
       contractName: NFT_CONTRACT.name,
       functionName: 'has-topic-badge',
@@ -146,6 +146,7 @@ export async function hasTopicBadge(userAddress: string, topicId: number) {
       senderAddress: userAddress,
       network: NETWORK_URL as any,
     });
+
     return cvToJSON(result);
   } catch (error) {
     console.error('Failed to check topic badge:', error);

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { FortressButton } from "@/components/fortress-button"
-import { Lock, CheckCircle2, Zap, ArrowRight, ShieldCheck } from "lucide-react"
+import { Lock, CheckCircle2, Zap, ArrowRight, ShieldCheck, Trophy } from "lucide-react"
 import { TOPICS_DATA } from "@/lib/topics"
 
 export default function RoadmapPage() {
@@ -41,7 +41,7 @@ export default function RoadmapPage() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.5, ease: "easeOut" as const }
     }
   }
 

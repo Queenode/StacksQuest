@@ -4,7 +4,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { FortressButton } from "@/components/fortress-button"
 import { ConnectButton } from "@/components/ConnectButton"
-import { Shield, BookOpen, Swords, Trophy } from "lucide-react"
+import { Shield, BookOpen, Swords, Trophy, Zap } from "lucide-react"
 
 export default function LandingPage() {
   const containerVariants = {
@@ -23,7 +23,7 @@ export default function LandingPage() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.8, ease: "easeOut" as const },
     },
   }
 

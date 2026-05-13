@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { UserData } from '@stacks/connect';
+import type { UserData } from '@stacks/connect';
 
 type Profile = {
   username?: string;
@@ -18,7 +18,7 @@ type Profile = {
 type ProfileContextType = {
   profile: Profile | null;
   isLoading: boolean;
-  updateProfile: (updates: Partial<Profile>) => Promise<void>;
+  updateProfile: (updates: Partial<Profile>) => Promise<Profile>;
 };
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);

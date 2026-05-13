@@ -1,17 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: [
-    '@reown/appkit',
-    '@reown/appkit-adapter-wagmi',
-    '@reown/appkit-scaffold-ui',
-    '@reown/appkit-ui',
-    '@reown/appkit-common',
-    'wagmi',
-    '@wagmi/core',
-    '@wagmi/connectors',
-    'viem'
-  ],
+  transpilePackages: [],
   serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream', 'pino-std-serializers'],
   experimental: {},
   turbopack: {},
