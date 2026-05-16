@@ -7,6 +7,7 @@ import { Shield, Zap, Trophy, History, ArrowUpRight, BarChart3, Wallet, Graduati
 import { XPProgress } from "@/components/XPProgress";
 import { AchievementGrid } from "@/components/AchievementGrid";
 import { ActivityFeed } from "@/components/ActivityFeed";
+import { WalletBalanceCard } from "@/components/WalletBalanceCard";
 
 import { QuestCard, QuestData } from "@/components/quests/QuestCard";
 
@@ -87,20 +88,7 @@ export default function DashboardPage() {
               streak={userStats.streak} 
             />
             
-            <div className="glass p-6 rounded-2xl mt-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  <Wallet className="w-5 h-5" />
-                </div>
-                <span className="text-[10px] font-bold text-muted-foreground uppercase">Available</span>
-              </div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60 mb-1">STX Holdings</p>
-              <h3 className="text-3xl font-bold">{userStats.stxBalance} <span className="text-sm font-normal text-muted-foreground">STX</span></h3>
-              <p className="text-[10px] text-muted-foreground mt-2 flex items-center gap-1">
-                <Zap className="w-3 h-3 text-primary" />
-                Earning 8.5% APY via Stacking
-              </p>
-            </div>
+            <WalletBalanceCard stxBalance={userStats.stxBalance} />
           </div>
 
           <div className="lg:col-span-2">
