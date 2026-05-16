@@ -8,6 +8,7 @@ import { XPProgress } from "@/components/XPProgress";
 import { AchievementGrid } from "@/components/AchievementGrid";
 import { ActivityFeed } from "@/components/ActivityFeed";
 import { WalletBalanceCard } from "@/components/WalletBalanceCard";
+import { ActiveTrialsHeader } from "@/components/ActiveTrialsHeader";
 
 import { QuestCard, QuestData } from "@/components/quests/QuestCard";
 
@@ -82,15 +83,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Active Chamber Trials */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-primary" />
-                Active Trials
-              </h2>
-              <Link href="/roadmap" className="text-xs font-bold text-primary hover:underline uppercase tracking-widest">
-                View All
-              </Link>
-            </div>
+            <ActiveTrialsHeader />
             <div className="grid grid-cols-1 gap-4">
               {activeQuests.map((quest) => (
                 <QuestCard key={quest.id} quest={quest} />
