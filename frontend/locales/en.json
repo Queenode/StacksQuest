@@ -2,5 +2,6 @@
   "start_quest": "Start Quest",
   "record_quiz": "Record Quiz Attempt",
   "complete_word_hunt": "Complete Word Hunt",
-  "leaderboard": "Leaderboard"
+  "leaderboard": "Leaderboard",
+  "dashboard": "Dashboard"
 }
