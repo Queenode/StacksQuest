@@ -23,5 +23,6 @@
   "profile": "Profile",
   "settings": "Settings",
   "log_out": "Log Out",
-  "submit": "Submit"
+  "submit": "Submit",
+  "cancel": "Cancel"
 }
