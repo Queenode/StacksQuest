@@ -17,5 +17,6 @@
   "transaction": "Transaction",
   "not_enough_funds": "Not Enough Funds",
   "success": "Success",
-  "error": "Error"
+  "error": "Error",
+  "loading": "Loading..."
 }
