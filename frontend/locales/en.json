@@ -13,5 +13,6 @@
   "mainnet": "Mainnet",
   "testnet": "Testnet",
   "fortress_master": "Fortress Master",
-  "pending": "Pending"
+  "pending": "Pending",
+  "transaction": "Transaction"
 }
