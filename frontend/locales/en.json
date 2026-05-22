@@ -18,5 +18,6 @@
   "not_enough_funds": "Not Enough Funds",
   "success": "Success",
   "error": "Error",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "welcome": "Welcome"
 }
