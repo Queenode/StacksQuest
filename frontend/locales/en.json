@@ -11,5 +11,6 @@
   "xp": "XP",
   "network": "Network",
   "mainnet": "Mainnet",
-  "testnet": "Testnet"
+  "testnet": "Testnet",
+  "fortress_master": "Fortress Master"
 }
