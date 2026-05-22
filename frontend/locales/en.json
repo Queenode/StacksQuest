@@ -15,5 +15,6 @@
   "fortress_master": "Fortress Master",
   "pending": "Pending",
   "transaction": "Transaction",
-  "not_enough_funds": "Not Enough Funds"
+  "not_enough_funds": "Not Enough Funds",
+  "success": "Success"
 }
