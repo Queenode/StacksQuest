@@ -16,5 +16,6 @@
   "pending": "Pending",
   "transaction": "Transaction",
   "not_enough_funds": "Not Enough Funds",
-  "success": "Success"
+  "success": "Success",
+  "error": "Error"
 }
