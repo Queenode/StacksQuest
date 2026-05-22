@@ -19,5 +19,6 @@
   "success": "Success",
   "error": "Error",
   "loading": "Loading...",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "profile": "Profile"
 }
