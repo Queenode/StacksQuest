@@ -10,5 +10,6 @@
   "level_up": "Level Up",
   "xp": "XP",
   "network": "Network",
-  "mainnet": "Mainnet"
+  "mainnet": "Mainnet",
+  "testnet": "Testnet"
 }
