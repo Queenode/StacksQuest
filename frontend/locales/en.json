@@ -14,5 +14,6 @@
   "testnet": "Testnet",
   "fortress_master": "Fortress Master",
   "pending": "Pending",
-  "transaction": "Transaction"
+  "transaction": "Transaction",
+  "not_enough_funds": "Not Enough Funds"
 }
