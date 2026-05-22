@@ -27,5 +27,6 @@
   "cancel": "Cancel",
   "next": "Next",
   "previous": "Previous",
-  "finish": "Finish"
+  "finish": "Finish",
+  "retry": "Retry"
 }
