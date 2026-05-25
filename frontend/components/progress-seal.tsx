@@ -1,3 +1,7 @@
+/**
+ * Component: ProgressSeal
+ * Handles the UI and state for ProgressSeal in StacksQuest.
+ */
 export function ProgressSeal() {
   return (
     <div className="inline-block animate-fade-in">
