@@ -4,6 +4,10 @@ interface WalletBalanceCardProps {
   stxBalance: string;
 }
 
+/**
+ * Component: WalletBalanceCard
+ * Handles the UI and state for WalletBalanceCard in StacksQuest.
+ */
 export function WalletBalanceCard({ stxBalance }: WalletBalanceCardProps) {
   return (
     <div className="glass p-6 rounded-2xl mt-6">
