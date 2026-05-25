@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { BarChart3 } from 'lucide-react';
 
+/**
+ * Component: ActiveTrialsHeader
+ * Handles the UI and state for ActiveTrialsHeader in StacksQuest.
+ */
 export function ActiveTrialsHeader() {
   return (
     <div className="flex items-center justify-between mb-6">
