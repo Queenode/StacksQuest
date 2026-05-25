@@ -4,6 +4,10 @@ interface QuestChamberProps {
   children: ReactNode
 }
 
+/**
+ * Component: QuestChamber
+ * Handles the UI and state for QuestChamber in StacksQuest.
+ */
 export function QuestChamber({ children }: QuestChamberProps) {
   return (
     <div className="container mx-auto px-4 py-8">
