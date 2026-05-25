@@ -10,6 +10,10 @@ export interface AchievementBadge {
   tokenId?: number;
 }
 
+/**
+ * Component: AchievementBadgeItem
+ * Handles the UI and state for AchievementBadgeItem in StacksQuest.
+ */
 export function AchievementBadgeItem({ badge, index }: { badge: AchievementBadge; index: number }) {
   return (
     <motion.div
