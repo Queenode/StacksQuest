@@ -5,6 +5,10 @@ import { useStacksAuth } from '@/contexts/StacksAuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldAlert, CheckCircle2, X } from 'lucide-react';
 
+/**
+ * Component: NetworkBanner
+ * Handles the UI and state for NetworkBanner in StacksQuest.
+ */
 export function NetworkBanner() {
   const { user } = useStacksAuth();
   const [show, setShow] = useState(false);
