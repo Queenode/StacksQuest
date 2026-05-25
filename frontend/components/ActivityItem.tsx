@@ -11,6 +11,10 @@ export interface ActivityEvent {
   time: string;
 }
 
+/**
+ * Component: ActivityItem
+ * Handles the UI and state for ActivityItem in StacksQuest.
+ */
 export function ActivityItem({ event, index }: { event: ActivityEvent; index: number }) {
   return (
     <motion.div
