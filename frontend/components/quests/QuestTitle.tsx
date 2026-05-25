@@ -6,6 +6,10 @@ interface QuestTitleProps {
   difficulty: string;
 }
 
+/**
+ * Component: QuestTitle
+ * Handles the UI and state for QuestTitle in StacksQuest.
+ */
 export function QuestTitle({ title, chamber, difficulty }: QuestTitleProps) {
   return (
     <div className="flex-1">
