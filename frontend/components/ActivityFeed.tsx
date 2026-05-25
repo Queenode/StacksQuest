@@ -12,6 +12,10 @@ const mockEvents: ActivityEvent[] = [
   { id: '4', type: 'user', title: 'New Seeker', description: '@Dana just entered the Fortress', time: '12m ago' },
 ];
 
+/**
+ * Component: ActivityFeed
+ * Handles the UI and state for ActivityFeed in StacksQuest.
+ */
 export function ActivityFeed() {
   return (
     <div className="glass rounded-2xl overflow-hidden border border-white/5">
