@@ -10,6 +10,10 @@ export interface QuestData {
   difficulty: string;
 }
 
+/**
+ * Component: QuestCard
+ * Handles the UI and state for QuestCard in StacksQuest.
+ */
 export function QuestCard({ quest }: { quest: QuestData }) {
   return (
     <div className="glass p-6 rounded-2xl flex flex-col md:flex-row md:items-center gap-6 group hover:bg-white/[0.03] hover:scale-[1.02] transition-all duration-300">
