@@ -15,6 +15,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
+/**
+ * Component: UserMenu
+ * Handles the UI and state for UserMenu in StacksQuest.
+ */
 export function UserMenu() {
   const { profile } = useProfile();
   const { user, disconnect } = useStacksAuth();
