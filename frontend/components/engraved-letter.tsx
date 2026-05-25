@@ -6,6 +6,10 @@ interface EngravedLetterProps {
   onCollect: () => void
 }
 
+/**
+ * Component: EngravedLetter
+ * Handles the UI and state for EngravedLetter in StacksQuest.
+ */
 export function EngravedLetter({ letter, collected, onCollect }: EngravedLetterProps) {
   return (
     <button
