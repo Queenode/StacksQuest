@@ -10,6 +10,10 @@ interface XPProgressProps {
   streak: number;
 }
 
+/**
+ * Component: XPProgress
+ * Handles the UI and state for XPProgress in StacksQuest.
+ */
 export function XPProgress({ currentXP, nextLevelXP, level, streak }: XPProgressProps) {
   const progress = (currentXP / nextLevelXP) * 100;
 
