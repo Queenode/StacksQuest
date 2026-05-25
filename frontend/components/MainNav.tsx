@@ -7,6 +7,10 @@ import { cn } from '@/lib/utils';
 import { useStacksAuth } from '@/contexts/StacksAuthContext';
 import { Shield, LayoutDashboard, Map, Trophy, ShoppingBag, LogIn, LogOut, User } from 'lucide-react';
 
+/**
+ * Component: MainNav
+ * Handles the UI and state for MainNav in StacksQuest.
+ */
 export default function MainNav() {
   const pathname = usePathname();
   const { user, connect, disconnect } = useStacksAuth();
