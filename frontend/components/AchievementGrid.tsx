@@ -9,6 +9,10 @@ interface AchievementGridProps {
   isFortressMaster: boolean;
 }
 
+/**
+ * Component: AchievementGrid
+ * Handles the UI and state for AchievementGrid in StacksQuest.
+ */
 export function AchievementGrid({ badges, isFortressMaster }: AchievementGridProps) {
   const earnedCount = badges.filter((b) => b.earned).length;
 
