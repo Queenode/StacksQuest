@@ -5,6 +5,10 @@ interface StoneTabletProps {
   content: ReactNode
 }
 
+/**
+ * Component: StoneTablet
+ * Handles the UI and state for StoneTablet in StacksQuest.
+ */
 export function StoneTablet({ title, content }: StoneTabletProps) {
   return (
     <div className="animate-fade-in">
