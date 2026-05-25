@@ -3,6 +3,10 @@
 import { motion } from 'framer-motion';
 import { Shield } from 'lucide-react';
 
+/**
+ * Component: FortressMasterBanner
+ * Handles the UI and state for FortressMasterBanner in StacksQuest.
+ */
 export function FortressMasterBanner() {
   return (
     <motion.div
