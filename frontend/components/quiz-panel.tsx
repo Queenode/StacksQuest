@@ -7,6 +7,10 @@ interface QuizPanelProps {
   onSelectAnswer: (index: number) => void
 }
 
+/**
+ * Component: QuizPanel
+ * Handles the UI and state for QuizPanel in StacksQuest.
+ */
 export function QuizPanel({ question, options, selectedAnswer, onSelectAnswer }: QuizPanelProps) {
   return (
     <div className="bg-gradient-to-br from-card via-muted to-card border-4 border-border rounded-lg shadow-2xl p-8 relative overflow-hidden">
