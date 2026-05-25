@@ -6,6 +6,10 @@ import {
   type ThemeProviderProps,
 } from 'next-themes'
 
+/**
+ * Component: ThemeProvider
+ * Handles the UI and state for ThemeProvider in StacksQuest.
+ */
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
