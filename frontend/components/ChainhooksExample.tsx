@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react';
 import { getChainhooksStatus, getChainhooks } from '@/app/actions/chainhooks';
 
+/**
+ * Component: ChainhooksExample
+ * Handles the UI and state for ChainhooksExample in StacksQuest.
+ */
 export default function ChainhooksExample() {
   const [status, setStatus] = useState<string>('Checking API status...');
   const [chainhooks, setChainhooks] = useState<any[]>([]);
