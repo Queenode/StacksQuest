@@ -2,6 +2,10 @@ import Link from 'next/link';
 import { Shield } from 'lucide-react';
 import { FortressButton } from '@/components/fortress-button';
 
+/**
+ * Component: DashboardHeader
+ * Handles the UI and state for DashboardHeader in StacksQuest.
+ */
 export function DashboardHeader() {
   return (
     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
