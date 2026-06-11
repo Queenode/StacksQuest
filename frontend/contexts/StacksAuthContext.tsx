@@ -40,8 +40,7 @@ export function StacksAuthProvider({ children }: { children: ReactNode }) {
 
   const connect = async () => {
     try {
-      const moduleName = '@stacks/connect';
-      const { showConnect } = await import(/* webpackIgnore: true */ moduleName);
+      const { showConnect } = await import('@stacks/connect');
       showConnect({
         appDetails: {
           name: 'Stacks Quest',
