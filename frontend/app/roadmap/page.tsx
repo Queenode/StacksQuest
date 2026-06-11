@@ -62,10 +62,7 @@ export default function RoadmapPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
-            <Zap className="w-3 h-3" />
-            <span>Path of the Seeker</span>
-          </div>
+
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
             The Path of <span className="text-gradient">Knowledge</span>
           </h1>
