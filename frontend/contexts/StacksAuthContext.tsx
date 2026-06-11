@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { showConnect } from '@stacks/connect';
+import { showConnect } from '@stacks/connect/dist/index.js';
 
 interface StacksUser {
   address: string;
