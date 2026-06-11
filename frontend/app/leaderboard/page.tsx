@@ -4,14 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FortressButton } from "@/components/fortress-button";
 import { Trophy, Medal, Star, Shield, ArrowUp } from "lucide-react";
-
-type LeaderboardEntry = {
-  rank: number;
-  address: string;
-  chambers: number;
-  xp: number;
-  title: string;
-};
+import { LeaderboardEntry } from "@/types/leaderboard";
+import { LeaderboardHeader } from "@/components/leaderboard/LeaderboardHeader";
+import { LeaderboardTable } from "@/components/leaderboard/LeaderboardTable";
 
 const topSeekers: LeaderboardEntry[] = [
   { rank: 1, address: "SP3...QRTX", chambers: 15, xp: 12850, title: "Fortress Master" },
@@ -34,18 +29,7 @@ export default function LeaderboardPage() {
 
       <div className="relative z-10 container mx-auto px-4 max-w-5xl">
         {/* Leaderboard Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-6">
-            <Trophy className="w-3 h-3" />
-            <span>Hall of Fame</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            Top <span className="text-gradient">Seekers</span>
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
-            The mightiest minds in the Stacks ecosystem. Their names are etched into the blockchain for eternity.
-          </p>
-        </div>
+        <LeaderboardHeader />
 
         {/* Podium / Top 3 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -77,54 +61,7 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Full Table */}
-        <div className="glass rounded-3xl overflow-hidden">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-white/5 bg-white/5">
-                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Rank</th>
-                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Seeker</th>
-                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Title</th>
-                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Chambers</th>
-                <th className="px-8 py-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60 text-right">XP</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {topSeekers.map((seeker, i) => (
-                <motion.tr 
-                  key={seeker.address}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 + i * 0.05 }}
-                  className="group hover:bg-white/[0.02] transition-colors"
-                >
-                  <td className="px-8 py-6">
-                    <span className="text-lg font-bold text-muted-foreground/40 group-hover:text-primary transition-colors">#{seeker.rank}</span>
-                  </td>
-                  <td className="px-8 py-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                        <Shield className="w-4 h-4 text-primary/40" />
-                      </div>
-                      <span className="font-bold">{seeker.address}</span>
-                    </div>
-                  </td>
-                  <td className="px-8 py-6">
-                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">{seeker.title}</span>
-                  </td>
-                  <td className="px-8 py-6">
-                    <div className="flex items-center gap-2">
-                      <ArrowUp className="w-3 h-3 text-primary" />
-                      <span className="font-bold">{seeker.chambers}</span>
-                    </div>
-                  </td>
-                  <td className="px-8 py-6 text-right">
-                    <span className="font-bold text-primary">{seeker.xp.toLocaleString()}</span>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <LeaderboardTable seekers={topSeekers} />
       </div>
     </div>
   );
