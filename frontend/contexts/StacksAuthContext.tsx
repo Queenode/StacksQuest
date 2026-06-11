@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import * as stacksConnect from '@stacks/connect/dist/index.js';
 
 interface StacksUser {
   address: string;
@@ -40,11 +41,10 @@ export function StacksAuthProvider({ children }: { children: ReactNode }) {
 
   const connect = async () => {
     try {
-      const connectModule = await import('@stacks/connect');
-      const showConnect = connectModule.showConnect || (connectModule as any).default?.showConnect;
+      const showConnect = stacksConnect.showConnect || (stacksConnect as any).default?.showConnect;
       
       if (typeof showConnect !== 'function') {
-        console.error('Resolved @stacks/connect module:', connectModule);
+        console.error('Resolved @stacks/connect module:', stacksConnect);
         throw new Error('showConnect is not a function');
       }
 
