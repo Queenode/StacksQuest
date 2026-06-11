@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: [],
+  transpilePackages: ['@stacks/connect', '@stacks/connect-ui'],
   serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream', 'pino-std-serializers'],
   experimental: {},
   turbopack: {},
