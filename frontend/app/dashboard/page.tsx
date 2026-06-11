@@ -11,6 +11,8 @@ import { WalletBalanceCard } from "@/components/WalletBalanceCard";
 import { ActiveTrialsHeader } from "@/components/ActiveTrialsHeader";
 
 import { QuestCard, QuestData } from "@/components/quests/QuestCard";
+import { useStacksAuth } from "@/contexts/StacksAuthContext";
+import { ConnectButton } from "@/components/ConnectButton";
 
 const activeQuests: QuestData[] = [
   { id: '1', title: 'Proof of Transfer (PoX)', chamber: 3, progress: 65, difficulty: 'Medium' },
@@ -49,7 +51,36 @@ const userBadges = [
 import { DashboardHeader } from "@/components/DashboardHeader";
 
 export default function DashboardPage() {
+  const { user } = useStacksAuth();
   const chamberProgress = (userStats.chambersConquered / userStats.totalChambers) * 100;
+
+  if (!user?.isConnected) {
+    return (
+      <div className="min-h-screen relative pb-20 bg-background pt-24 flex items-center justify-center">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[100px]" />
+        </div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10 glass p-12 rounded-3xl max-w-lg text-center flex flex-col items-center gap-6 border-primary/20"
+        >
+          <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center border border-white/10 mb-2">
+            <Shield className="w-10 h-10 text-primary opacity-50" />
+          </div>
+          <h2 className="text-3xl font-bold">The Fortress is Sealed</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            You must connect your Stacks wallet to enter the Fortress, view your progress, and conquer the chambers of knowledge.
+          </p>
+          <div className="mt-4 w-full flex justify-center">
+            <ConnectButton />
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative pb-20 bg-background pt-24">
