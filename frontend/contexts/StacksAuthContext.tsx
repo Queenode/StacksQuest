@@ -1,7 +1,6 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { showConnect } from '@stacks/connect';
 
 interface StacksUser {
   address: string;
@@ -41,6 +40,7 @@ export function StacksAuthProvider({ children }: { children: ReactNode }) {
 
   const connect = async () => {
     try {
+      const { showConnect } = await import('@stacks/connect');
       showConnect({
         appDetails: {
           name: 'Stacks Quest',
