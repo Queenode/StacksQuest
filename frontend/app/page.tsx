@@ -28,7 +28,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col items-center justify-center bg-background">
+    <div className="min-h-screen pt-20 relative overflow-hidden flex flex-col items-center justify-center bg-background">
       {/* Dynamic Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 -left-10 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-pulse" />
