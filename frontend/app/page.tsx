@@ -41,16 +41,7 @@ export default function LandingPage() {
         animate="visible"
         className="relative z-10 w-full max-w-7xl px-4 flex flex-col items-center text-center"
       >
-        <motion.div variants={itemVariants} className="mb-8 flex flex-col items-center gap-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium tracking-widest uppercase">
-            <Shield className="w-3 h-3" />
-            <span>The Fortress is Open</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-bold tracking-[0.2em] uppercase animate-pulse shadow-[0_0_15px_rgba(249,115,22,0.15)]">
-            <Zap className="w-3 h-3 fill-orange-400" />
-            Live on Stacks Mainnet
-          </div>
-        </motion.div>
+
 
         <motion.h1 
           variants={itemVariants}
