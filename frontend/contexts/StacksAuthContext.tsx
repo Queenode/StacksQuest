@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import * as stacksConnect from '@stacks/connect/dist/index.js';
+import { connect as authenticateWallet, disconnect as logoutWallet, isConnected, getLocalStorage } from '@stacks/connect';
 
 interface StacksUser {
   address: string;
@@ -31,45 +31,41 @@ export function StacksAuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check for existing session
-    const savedAddress = localStorage.getItem('stacks_quest_address');
-    if (savedAddress) {
-      setUser({ address: savedAddress, isConnected: true });
+    if (isConnected()) {
+      try {
+        const stored: any = getLocalStorage();
+        if (stored && stored.addresses) {
+          const stxAddrs = Array.isArray(stored.addresses) ? stored.addresses : (stored.addresses.stx || []);
+          const address = stxAddrs.find((a: any) => ['mainnet', undefined].includes(a.network))?.address || stxAddrs[0]?.address || '';
+          if (address) {
+            setUser({ address, isConnected: true });
+          }
+        }
+      } catch (e) {
+        console.error('Error loading stored data:', e);
+      }
     }
     setIsLoading(false);
   }, []);
 
   const connect = async () => {
     try {
-      const showConnect = stacksConnect.showConnect || (stacksConnect as any).default?.showConnect;
-      
-      if (typeof showConnect !== 'function') {
-        console.error('Resolved @stacks/connect module:', stacksConnect);
-        throw new Error('showConnect is not a function');
-      }
-
-      showConnect({
-        appDetails: {
-          name: 'Stacks Quest',
-          icon: '/icon.png',
-        },
-        onFinish: (data: any) => {
-          const address = data.userSession.loadUserData().profile.stxAddress.mainnet;
-          setUser({ address, isConnected: true });
-          localStorage.setItem('stacks_quest_address', address);
-        },
-        onCancel: () => {
-          console.log('User cancelled connection');
-        },
+      const response = await authenticateWallet({
+        forceWalletSelect: true,
       });
+      
+      if (response && response.addresses) {
+        const address = response.addresses.find((a: any) => a.network === 'mainnet')?.address || response.addresses[0]?.address || '';
+        setUser({ address, isConnected: true });
+      }
     } catch (error) {
       console.error('Failed to connect:', error);
     }
   };
 
   const disconnect = () => {
+    logoutWallet();
     setUser(null);
-    localStorage.removeItem('stacks_quest_address');
   };
 
   return (
