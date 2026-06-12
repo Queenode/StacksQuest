@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for stacks-transactions.ts
+ * This helps maintain code documentation standards.
+ */
 import { openContractCall } from '@stacks/connect';
 import { uintCV, AnchorMode } from '@stacks/transactions';
 
