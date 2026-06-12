@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for stacks-contract.ts
+ * This helps maintain code documentation standards.
+ */
 import { fetchCallReadOnlyFunction, cvToJSON, uintCV, principalCV } from '@stacks/transactions';
 
 // Contract deployment addresses (update after deployment)
