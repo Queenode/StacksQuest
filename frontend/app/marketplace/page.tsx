@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for page.tsx
+ * This helps maintain code documentation standards.
+ */
 'use client';
 
 import Link from "next/link";
