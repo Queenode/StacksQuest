@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for chainhooks.ts
+ * This helps maintain code documentation standards.
+ */
 'use server';
 
 import chainhooksClient from '@/lib/chainhooks';
