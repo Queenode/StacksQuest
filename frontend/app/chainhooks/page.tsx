@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for page.tsx
+ * This helps maintain code documentation standards.
+ */
 import ChainhooksExample from '@/components/ChainhooksExample';
 
 export default function ChainhooksPage() {
