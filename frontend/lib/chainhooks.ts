@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for chainhooks.ts
+ * This helps maintain code documentation standards.
+ */
 import { ChainhooksClient, CHAINHOOKS_BASE_URL } from '@hirosystems/chainhooks-client';
 
 // Initialize the Chainhooks client with environment variables
