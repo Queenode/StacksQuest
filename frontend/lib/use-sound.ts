@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for use-sound.ts
+ * This helps maintain code documentation standards.
+ */
 'use client'
 
 import { useCallback } from 'react'
