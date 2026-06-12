@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for layout.tsx
+ * This helps maintain code documentation standards.
+ */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
