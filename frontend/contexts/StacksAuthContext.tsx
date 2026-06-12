@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for StacksAuthContext.tsx
+ * This helps maintain code documentation standards.
+ */
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
