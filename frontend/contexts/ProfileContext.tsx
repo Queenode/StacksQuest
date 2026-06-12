@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for ProfileContext.tsx
+ * This helps maintain code documentation standards.
+ */
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
