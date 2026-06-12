@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for providers.tsx
+ * This helps maintain code documentation standards.
+ */
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
