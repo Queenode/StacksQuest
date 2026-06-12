@@ -1,3 +1,7 @@
+/**
+ * Auto-generated JSDoc for topics.ts
+ * This helps maintain code documentation standards.
+ */
 // Topics data for Stacks Quest
 
 export interface Topic {
