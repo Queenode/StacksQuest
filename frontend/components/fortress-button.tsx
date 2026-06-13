@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for fortress-button.tsx
+ */
 "use client"
 
 import type React from "react"
