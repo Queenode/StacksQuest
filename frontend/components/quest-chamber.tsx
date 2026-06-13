@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for quest-chamber.tsx
+ */
 import type { ReactNode } from "react"
 
 interface QuestChamberProps {
