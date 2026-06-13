@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for LeaderboardRow.tsx
+ */
 import { motion } from "framer-motion";
 import { Shield, ArrowUp } from "lucide-react";
 import { LeaderboardEntry } from "@/types/leaderboard";
