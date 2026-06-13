@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for ConnectButton.tsx
+ */
 'use client';
 
 import { useStacksAuth } from '@/contexts/StacksAuthContext';
