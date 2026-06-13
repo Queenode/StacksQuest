@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for QuestTitle.tsx
+ */
 import React from 'react';
 
 interface QuestTitleProps {
