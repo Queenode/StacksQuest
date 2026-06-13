@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for QuestCard.tsx
+ */
 import Link from 'next/link';
 import { FortressButton } from '@/components/fortress-button';
 import { QuestTitle } from './QuestTitle';
