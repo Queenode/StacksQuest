@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for ActiveTrialsHeader.tsx
+ */
 import Link from 'next/link';
 import { BarChart3 } from 'lucide-react';
 
