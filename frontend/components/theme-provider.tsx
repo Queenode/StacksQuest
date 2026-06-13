@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for theme-provider.tsx
+ */
 'use client'
 
 import * as React from 'react'
