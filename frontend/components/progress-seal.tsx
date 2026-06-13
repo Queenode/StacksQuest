@@ -1,4 +1,7 @@
 /**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for progress-seal.tsx
+ */
+/**
  * Component: ProgressSeal
  * Handles the UI and state for ProgressSeal in StacksQuest.
  */
