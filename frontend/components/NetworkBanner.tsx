@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for NetworkBanner.tsx
+ */
 'use client';
 
 import { useEffect, useState } from 'react';
