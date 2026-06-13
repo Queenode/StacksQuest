@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for XPProgress.tsx
+ */
 'use client';
 
 import { motion } from 'framer-motion';
