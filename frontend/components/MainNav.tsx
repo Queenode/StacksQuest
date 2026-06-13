@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for MainNav.tsx
+ */
 'use client';
 
 import Link from 'next/link';
