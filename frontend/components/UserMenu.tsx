@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for UserMenu.tsx
+ */
 'use client';
 
 import { useRouter } from 'next/navigation';
