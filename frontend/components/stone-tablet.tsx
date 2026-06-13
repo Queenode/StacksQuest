@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for stone-tablet.tsx
+ */
 import type { ReactNode } from "react"
 
 interface StoneTabletProps {
