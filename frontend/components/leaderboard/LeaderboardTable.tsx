@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for LeaderboardTable.tsx
+ */
 import { LeaderboardEntry } from "@/types/leaderboard";
 import { LeaderboardRow } from "./LeaderboardRow";
 
