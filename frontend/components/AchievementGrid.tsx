@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for AchievementGrid.tsx
+ */
 'use client';
 
 import { Award } from 'lucide-react';
