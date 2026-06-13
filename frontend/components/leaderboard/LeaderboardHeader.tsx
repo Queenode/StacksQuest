@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for LeaderboardHeader.tsx
+ */
 import { Trophy } from "lucide-react";
 
 /**
