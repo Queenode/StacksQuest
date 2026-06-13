@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for engraved-letter.tsx
+ */
 "use client"
 
 interface EngravedLetterProps {
