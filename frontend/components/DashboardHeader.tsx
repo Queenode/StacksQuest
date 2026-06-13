@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for DashboardHeader.tsx
+ */
 import Link from 'next/link';
 import { Shield } from 'lucide-react';
 import { FortressButton } from '@/components/fortress-button';
