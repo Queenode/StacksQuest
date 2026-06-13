@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for WalletBalanceCard.tsx
+ */
 import { Wallet, Zap } from 'lucide-react';
 
 interface WalletBalanceCardProps {
