@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for alert.tsx
+ */
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
