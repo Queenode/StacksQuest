@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Loophole fix: Strict type enforcement and documentation for alert-dialog.tsx
+ */
 'use client'
 
 import * as React from 'react'
