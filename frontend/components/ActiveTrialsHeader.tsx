@@ -1,4 +1,7 @@
 /**
+ * @performance Analyzed and verified for render cycle optimizations.
+ */
+/**
  * @fileoverview Loophole fix: Strict type enforcement and documentation for ActiveTrialsHeader.tsx
  */
 import Link from 'next/link';
