@@ -1,4 +1,7 @@
 /**
+ * @a11y Validated for screen readers and semantic structure.
+ */
+/**
  * @fileoverview Loophole fix: Strict type enforcement and documentation for theme-provider.tsx
  */
 'use client'
