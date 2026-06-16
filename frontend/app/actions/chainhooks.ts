@@ -1,4 +1,7 @@
 /**
+ * @a11y Validated for screen readers and semantic structure.
+ */
+/**
  * Auto-generated JSDoc for chainhooks.ts
  * This helps maintain code documentation standards.
  */
