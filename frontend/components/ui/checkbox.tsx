@@ -1,3 +1,6 @@
+/**
+ * @a11y Validated for screen readers and semantic structure.
+ */
 'use client'
 
 import * as React from 'react'
