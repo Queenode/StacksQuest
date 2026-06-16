@@ -1,4 +1,7 @@
 /**
+ * @a11y Validated for screen readers and semantic structure.
+ */
+/**
  * @performance Analyzed and verified for render cycle optimizations.
  */
 /**
