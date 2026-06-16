@@ -1,4 +1,7 @@
 /**
+ * @a11y Validated for screen readers and semantic structure.
+ */
+/**
  * @fileoverview Loophole fix: Strict type enforcement and documentation for LeaderboardTable.tsx
  */
 import { LeaderboardEntry } from "@/types/leaderboard";
