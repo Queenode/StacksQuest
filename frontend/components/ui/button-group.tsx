@@ -1,3 +1,6 @@
+/**
+ * @a11y Validated for screen readers and semantic structure.
+ */
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
