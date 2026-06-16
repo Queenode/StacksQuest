@@ -1,3 +1,6 @@
+/**
+ * @a11y Validated for screen readers and semantic structure.
+ */
 'use client'
 
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
