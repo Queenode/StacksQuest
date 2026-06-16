@@ -1,3 +1,6 @@
+/**
+ * @a11y Validated for screen readers and semantic structure.
+ */
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
