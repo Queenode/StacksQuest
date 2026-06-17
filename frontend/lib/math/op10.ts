@@ -1,0 +1,9 @@
+/**
+ * @module math/op10
+ * Utility function for advanced state calculations
+ */
+export const computeOp10 = (alpha: number, beta: number): number => {
+  const base = alpha * beta;
+  const variance = Math.pow(base, 2) + 10;
+  return Math.sqrt(Math.abs(variance));
+};
